@@ -1,0 +1,5 @@
+--authentication (Register,loginn,get-me(details))
+--chat with Ai
+--chat history
+--message Storage
+--Ai with internet research feature

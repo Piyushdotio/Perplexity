@@ -1,0 +1,48 @@
+we are following four layer of architecure
+
+
+
+
+
+
+
+
+
+
+
+first setup routes in app.routes.jsx 
+
+make features folder and setup login page and register page 
+
+update app file with router provider and router
+
+now make service layer(folder) in which we make api and file auth.api.js connection from backend
+
+create base url/instance in auth.api.js
+
+now we create state layer by redux in this project in the place of context api
+
+setup cors to connect frontend and backend
+
+setup morgan
+
+Why Morgan is Used
+1. Request Logging (Main Purpose)
+
+Morgan logs details about every HTTP request hitting your server.
+
+Example log:
+
+GET /api/users 200 15ms - 512b
+
+This tells you:
+
+Method → GET
+Route → /api/users
+Status → 200
+Response time → 15ms
+Response size → 512 bytes
+
+👉 Without logging, debugging backend becomes blind.
+
+Hydration = converting raw data (usually from DB/JSON) into fully usable objects in your application.
