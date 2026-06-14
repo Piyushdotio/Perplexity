@@ -53,14 +53,20 @@ export function useAuth(){
             dispatch(setUser(data.user))
             return data
         }
-           catch(err){
-            const message = getErrorMessage(err, "Failed to fetch user")
-            dispatch(setError(message))
-            throw new Error(message)
+        catch(err){
+            if (err.response?.status !== 401) {
+                const message = getErrorMessage(err, "Failed to fetch user")
+                dispatch(setError(message))
+                throw new Error(message)
+            }
         }finally{
             dispatch(setLoading(false))
         }
     }
-    return {handleLogin,handleRegister,handlegetMe}
-}
 
+    function clearError() {
+        dispatch(setError(null));
+    }
+
+    return {handleLogin,handleRegister,handlegetMe,clearError}
+}

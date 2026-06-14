@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hook/useAuth'
 import { useSelector } from 'react-redux'
@@ -13,9 +13,13 @@ const Login = () => {
     const loading = useSelector(state => state.auth.loading)
     const error = useSelector(state => state.auth.error)
 
-    const { handleLogin } = useAuth()
+    const { handleLogin, clearError } = useAuth()
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        clearError()
+    }, [])
 
     const submitForm = async (event) => {
         event.preventDefault()

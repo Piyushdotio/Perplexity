@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useAuth } from '../hook/useAuth'
@@ -11,7 +11,11 @@ const Register = () => {
 
   const loading = useSelector((state) => state.auth.loading)
   const error = useSelector((state) => state.auth.error)
-  const { handleRegister } = useAuth()
+  const { handleRegister, clearError } = useAuth()
+
+  useEffect(() => {
+    clearError()
+  }, [])
 
   const submitForm = async (event) => {
     event.preventDefault()
