@@ -16,24 +16,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./dist'))
 app.use(cookieParser())
 app.use(morgan("dev"))
-app.use(cors({
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://perplexity-6a72.onrender.com"
+];
+
+app.use(
+  cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, curl, postman)
-        if (!origin) return callback(null, true);
-        if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error('Not allowed by CORS'));
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
     },
-    credentials:true,
-    methods:['GET','POST','PUT','DELETE']
-}))
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/api/auth", authRouter)
 app.use("/api/chats",chatRouter)
 
-app.get("*name", (req, res) => {
+app.get("/{*splat}", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
