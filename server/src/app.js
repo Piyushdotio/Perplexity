@@ -19,8 +19,9 @@ app.use(morgan("dev"))
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
-  "https://perplexity-6a72.onrender.com"
-];
+  process.env.CLIENT_URL,
+  process.env.FRONTEND_URL
+].filter(Boolean);
 
 app.use(
   cors({
