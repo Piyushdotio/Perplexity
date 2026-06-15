@@ -29,12 +29,12 @@ app.use(cors({
     methods:['GET','POST','PUT','DELETE']
 }))
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
 // Routes
 app.use("/api/auth", authRouter)
 app.use("/api/chats",chatRouter)
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 export default  app
