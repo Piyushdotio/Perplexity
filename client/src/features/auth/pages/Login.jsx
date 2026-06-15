@@ -33,6 +33,7 @@ const Login = () => {
             await handleLogin(payload)
             navigate("/")
         } catch (err) {
+            console.log(err)
             // Auth errors are already stored in Redux for UI display.
         }
 

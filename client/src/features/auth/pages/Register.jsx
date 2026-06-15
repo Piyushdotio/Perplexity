@@ -33,7 +33,7 @@ const Register = () => {
       setEmail('')
       setPassword('')
     } catch (err) {
-      setSuccessMessage('')
+      console.log(err)
     }
   }
 
